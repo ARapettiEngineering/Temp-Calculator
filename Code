@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+double Cel, Fheit, WindS, WindC;
+
+void FtoC() {
+    cout << "Enter Degrees In Fahrenheit" << endl;
+    cin >> Fheit;
+    double Cel = (Fheit - 32) * 5/9;
+    cout << "The Temperature In Celsius Is " << Cel << endl << endl;
+    cout << "Enter Wind Speed In MPH" << endl;
+    cin >> WindS;
+    WindC = 35.74 + ((0.6215 * Fheit) - (35.75 *(pow(WindS,0.16)))) + (.4275*Fheit * (pow(WindS,0.16)));
+    WindC = (WindC-32)*5/9;
+    cout <<"The Feels Like In Celsius is "<< WindC << " Degrees";
+    }
+
+void CtoF() {
+    cout << "Enter Degrees In Celsius" << endl;
+    cin >> Cel;
+    double Fheit = Cel * 9/5 + 32;
+    cout << "The Temperature In Fahrenheit Is " << Fheit << endl << endl;
+    cout << "Enter Wind Speed In MPH" << endl;
+    cin >> WindS;
+    WindC = 35.74 + ((0.6215 * Fheit) - (35.75 *(pow(WindS,0.16)))) + (.4275*Fheit * (pow(WindS,0.16)));
+    cout <<"The Feels Like In Fahrenheit "<< WindC << " Degrees";
+    }
+
+int main()
+{
+
+    char CORF;
+    cout << "If You Are Calculating Fahrenheit Please Type F. If You Are Calculating Celsius Please Type C"<< endl;
+    cin >> CORF;
+    if (CORF == 'F' || CORF == 'f'){
+        CtoF();
+    }
+    else if (CORF == 'C' || CORF == 'c') {
+        FtoC();
+    }
+
+    return 0;
+}
