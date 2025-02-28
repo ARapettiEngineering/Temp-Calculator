@@ -22,8 +22,8 @@ void Calc() {
 
 }
 void Display(){
-cout << " Temperature    Feels Like   Wind Speed   Dew Point   Cloud Base" << endl;
-cout << "----------------------------------------------------------------" << endl;
+cout << " Temperature   Feels Like    Wind Speed   Dew Point   Cloud Base" << endl;
+cout << "-----------------------------------------------------------------" << endl;
 cout << " "<< Fheit << " Degrees    " << round(WindC) << " Degrees      " << WindS << " MPH     " << DewP << " Degrees    " << round(Cbase) << " Feet " << endl;
 }
 
