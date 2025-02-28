@@ -1,16 +1,15 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-//defined variables
-double DewP, Fheit, WindS, WindC, Cbase;
 
+void take_input()
 //Takes input from user for degrees, wind speed, and dew point
 void Inputs() {
-    cout << "Enter Degrees In Fahrenheit" << endl;
+    cout << "Enter Degrees In Fahrenheit: ";
     cin >> Fheit;
-    cout << endl << "Enter Wind Speed In MPH" << endl;
+    cout << endl << "Enter Wind Speed In MPH: ";
     cin >> WindS;
-    cout << endl << "Enter Dew Point In Fahrenheit" << endl;
+    cout << endl << "Enter Dew Point In Fahrenheit: ";
     cin >> DewP;
     cout << endl;
 
@@ -22,23 +21,27 @@ void Calc() {
 
 }
 void Display(){
-cout << " Temperature   Feels Like    Wind Speed   Dew Point   Cloud Base" << endl;
-cout << "-----------------------------------------------------------------" << endl;
-cout << " "<< Fheit << " Degrees    " << round(WindC) << " Degrees      " << WindS << " MPH     " << DewP << " Degrees    " << round(Cbase) << " Feet " << endl;
+    cout << "-----------------------------------------------------------------" << endl;
+    cout << " Temperature   Feels Like    Wind Speed   Dew Point   Cloud Base" << endl;
+    cout << "-----------------------------------------------------------------" << endl;
+    cout << " "<< Fheit << " Degrees    " << round(WindC) << " Degrees      " << WindS << " MPH     " << DewP << " Degrees    " << round(Cbase) << " Feet " << endl;
+    cout << "-----------------------------------------------------------------" << endl;
 }
 
 int main()
 {
-cout << "----------------------------------------------------------------" << endl;
-cout << "|This program will ask for the temperature (in Fahrenheit), the|" << endl;
-cout << "|dew point (in Fahrenheit), and The Wind Speed (in MPH). With  |" << endl;
-cout << "|This information the program will calculate the wind chill    |" << endl;
-cout << "|also known as the feels like temperature (in Fahrenheit). It  |" << endl;
-cout << "|will also calculate the cloud base (in feet). It then will    |" << endl;
-cout << "|display these in an organized table.                          |" << endl;
-cout << "----------------------------------------------------------------" << endl<<endl;
-Inputs();
-Calc();
-Display();
+    //defined variables
+    double DewP, Fheit, WindS, WindC, Cbase;
+    cout << "----------------------------------------------------------------" << endl;
+    cout << "|This program will ask for the temperature (in Fahrenheit), the|" << endl;
+    cout << "|dew point (in Fahrenheit), and The Wind Speed (in MPH). With  |" << endl;
+    cout << "|This information the program will calculate the wind chill    |" << endl;
+    cout << "|also known as the feels like temperature (in Fahrenheit). It  |" << endl;
+    cout << "|will also calculate the cloud base (in feet). It then will    |" << endl;
+    cout << "|display these in an organized table.                          |" << endl;
+    cout << "----------------------------------------------------------------" << endl<<endl;
+    Inputs();
+    Calc();
+    Display();
     return 0;
 }
