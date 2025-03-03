@@ -1,7 +1,30 @@
 #include <iostream>
 #include <cmath>
 using namespace std;
-//Takes input from user for degrees, wind speed, and dew point
+
+void Inputs();//Defining the function for inputs
+void Calc();//Defining the function that calculates everything
+void Display();//Defining the function that displays everything
+double DewP, Fheit, WindS, WindC, Cbase;
+
+
+int main()
+{
+    double DewP, Fheit, WindS, WindC, Cbase; //Defined Variables
+    cout << "------------------------------------------------------------------" << endl;//Start of program screen
+    cout << "| This program will ask for the temperature (in Fahrenheit), the |" << endl;
+    cout << "| dew point (in Fahrenheit), and The wind speed (in MPH). With   |" << endl;
+    cout << "| this information the program will calculate the wind chill     |" << endl;
+    cout << "| also known as the feels like temperature (in Fahrenheit). It   |" << endl;
+    cout << "| will also calculate the cloud base (in Feet). It then will     |" << endl;
+    cout << "| display these in an organized table.                           |" << endl;
+    cout << "------------------------------------------------------------------" << endl<<endl;
+    Inputs();//Calling the inputs function
+    Calc();//Calling the Calc function
+    Display();//Calling the Display Function
+    return 0;
+}
+//Inputs shows what input to enter and takes the input (ex. Enter degrees in Fahrenheit
 void Inputs() {
     cout << "Enter Degrees In Fahrenheit: ";
     cin >> Fheit;
@@ -10,36 +33,18 @@ void Inputs() {
     cout << endl << "Enter Dew Point In Fahrenheit: ";
     cin >> DewP;
     cout << endl;
-
-    }
-
+}
+//Calculates the wind chill and the cloud base with the inputs provided
 void Calc() {
- WindC = 35.74 + ((0.6215 * Fheit) - (35.75 *(pow(WindS,0.16)))) + (.4275*Fheit * (pow(WindS,0.16)));
- Cbase = ((Fheit-DewP)/4.4)*1000;
+    WindC = 35.74 + ((0.6215 * Fheit) - (35.75 *(pow(WindS,0.16)))) + (.4275*Fheit * (pow(WindS,0.16)));
+    Cbase = ((Fheit-DewP)/4.4)*1000;
 
 }
+//Displays the final Temp, Wind speed, etc
 void Display(){
     cout << "-----------------------------------------------------------------" << endl;
     cout << " Temperature   Feels Like    Wind Speed   Dew Point   Cloud Base" << endl;
     cout << "-----------------------------------------------------------------" << endl;
     cout << " "<< Fheit << " Degrees    " << round(WindC) << " Degrees      " << WindS << " MPH     " << DewP << " Degrees    " << round(Cbase) << " Feet " << endl;
     cout << "-----------------------------------------------------------------" << endl;
-}
-
-int main()
-{
-    //defined variables
-    double DewP, Fheit, WindS, WindC, Cbase;
-    cout << "----------------------------------------------------------------" << endl;
-    cout << "|This program will ask for the temperature (in Fahrenheit), the|" << endl;
-    cout << "|dew point (in Fahrenheit), and The Wind Speed (in MPH). With  |" << endl;
-    cout << "|This information the program will calculate the wind chill    |" << endl;
-    cout << "|also known as the feels like temperature (in Fahrenheit). It  |" << endl;
-    cout << "|will also calculate the cloud base (in feet). It then will    |" << endl;
-    cout << "|display these in an organized table.                          |" << endl;
-    cout << "----------------------------------------------------------------" << endl<<endl;
-    Inputs();
-    Calc();
-    Display();
-    return 0;
 }
