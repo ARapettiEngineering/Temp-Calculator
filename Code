@@ -28,10 +28,34 @@ int main()
 void Inputs() {
     cout << "Enter Degrees In Fahrenheit: ";
     cin >> Fheit;
+        if(cin.fail()){//If its not a number it will ask to enter a number
+            while (cin.fail()){
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << endl << "Please Enter An Integer: ";
+            cin >> Fheit;
+            }
+        }
     cout << endl << "Enter Wind Speed In MPH: ";
     cin >> WindS;
+    if(cin.fail()){ //If its not a number it will ask to enter a number
+            while (cin.fail()){
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cout << endl << "Please Enter An Integer: ";
+                cin >> WindS;
+    }
+    }
     cout << endl << "Enter Dew Point In Fahrenheit: ";
     cin >> DewP;
+    if(cin.fail()){//If its not a number it will ask to enter a number
+            while (cin.fail()){
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cout << endl << "Please Enter An Integer: ";
+                cin >> DewP;
+            }
+    }
     cout << endl;
 }
 //Calculates the wind chill and the cloud base with the inputs provided
