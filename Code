@@ -13,11 +13,12 @@ int main()
     double DewP, Fheit, WindS, WindC, Cbase; //Defined Variables
     cout << "------------------------------------------------------------------" << endl;//Start of program screen
     cout << "| This program will ask for the temperature (in Fahrenheit), the |" << endl;
-    cout << "| dew point (in Fahrenheit), and The wind speed (in MPH). With   |" << endl;
-    cout << "| this information the program will calculate the wind chill     |" << endl;
-    cout << "| also known as the feels like temperature (in Fahrenheit). It   |" << endl;
-    cout << "| will also calculate the cloud base (in Feet). It then will     |" << endl;
-    cout << "| display these in an organized table.                           |" << endl;
+    cout << "| dew point (in Fahrenheit), the wind speed (in MPH),  and       |" << endl;
+    cout << "| elevation (in Feet). With this information the program         |" << endl;
+    cout << "| will calculate the wind chill also known as the feels like     |" << endl;
+    cout << "| temperature (in Fahrenheit). It will also calculate the cloud  |" << endl;
+    cout << "| base (in Feet). It then will display these in an organized     |" << endl;
+    cout << "| table.                                                         |" << endl;
     cout << "------------------------------------------------------------------" << endl<<endl;
     Inputs();//Calling the inputs function
     Calc();//Calling the Calc function
@@ -56,7 +57,7 @@ void Inputs() {
                 cin >> DewP;
             }
     }
-    cout << endl << "Enter Sea Level In Feet: ";
+    cout << endl << "Enter Elevation In Feet: ";
     cin >> Clevel;
     if(cin.fail()){//If its not a number it will ask to enter a number
             while (cin.fail()){
