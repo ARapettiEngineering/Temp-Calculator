@@ -1,7 +1,12 @@
 #include <iostream>
 #include <cmath>
+#include <string>
+#include <sstream>
 using namespace std;
-
+string input1;
+string input2;
+string input3;
+string input4;
 void Inputs();//Defining the function for inputs
 void Calc();//Defining the function that calculates everything
 void Display();//Defining the function that displays everything
@@ -10,6 +15,7 @@ double DewP, Fheit, WindS, WindC, Cbase, Clevel;
 
 int main()
 {
+
     double DewP, Fheit, WindS, WindC, Cbase; //Defined Variables
     cout << "------------------------------------------------------------------" << endl;//Start of program screen
     cout << "| This program will ask for the temperature (in Fahrenheit), the |" << endl;
@@ -28,44 +34,77 @@ int main()
 //Inputs shows what input to enter and takes the input (ex. Enter degrees in Fahrenheit
 void Inputs() {
     cout << "Enter Degrees In Fahrenheit: ";
-    cin >> Fheit;
-        if(cin.fail()){//If its not a number it will ask to enter a number
-            while (cin.fail()){
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << endl << "Please Enter An Integer: ";
+    getline(cin, input1);
+    stringstream aa(input1);
+
+    //Extracts the integer
+    if (aa >> Fheit) {
+        // Check if there's anything left after the number
+
+        char leftover;
+        if (aa >> leftover) {
+            cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
             cin >> Fheit;
-            }
         }
-    cout << endl << "Enter Wind Speed In MPH: ";
-    cin >> WindS;
-    if(cin.fail()){ //If its not a number it will ask to enter a number
-            while (cin.fail()){
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cout << endl << "Please Enter An Integer: ";
-                cin >> WindS;
     }
+    else {
+        cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
+        cin >> Fheit;
+    }
+
+    cout << endl << "Enter Wind Speed In MPH: ";
+    cin >> input2;
+    stringstream ss(input2);
+
+    //Extracts the integer
+    if (ss >> WindS) {
+        // Check if there's anything left after the number
+
+        char leftover;
+        if (ss >> leftover) {
+            cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
+            cin >> WindS;
+        }
+    }
+    else {
+        cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
+        cin >> WindS;
     }
     cout << endl << "Enter Dew Point In Fahrenheit: ";
-    cin >> DewP;
-    if(cin.fail()){//If its not a number it will ask to enter a number
-            while (cin.fail()){
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cout << endl << "Please Enter An Integer: ";
-                cin >> DewP;
-            }
+    cin >> input3;
+     stringstream gg(input3);
+
+    //Extracts the integer
+    if (gg >> DewP) {
+        // Check if there's anything left after the number
+
+        char leftover;
+        if (gg >> leftover) {
+            cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
+            cin >> DewP;
+        }
+    }
+    else {
+        cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
+        cin >> DewP;
     }
     cout << endl << "Enter Elevation In Feet: ";
-    cin >> Clevel;
-    if(cin.fail()){//If its not a number it will ask to enter a number
-            while (cin.fail()){
-                cin.clear();
-                cin.ignore(10000, '\n');
-                cout << endl << "Please Enter An Integer: ";
-                cin >> Clevel;
-            }
+    cin >> input4;
+     stringstream ff(input4);
+
+    //Extracts the integer
+    if (ff >> Clevel) {
+        // Check if there's anything left after the number
+
+        char leftover;
+        if (ff >> leftover) {
+            cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
+            cin >> Clevel;
+        }
+    }
+    else {
+        cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
+        cin >> Clevel;
     }
     cout << endl;
 }
