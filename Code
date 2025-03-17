@@ -51,7 +51,6 @@ void Inputs() {
         cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
         cin >> Fheit;
     }
-
     cout << endl << "Enter Wind Speed In MPH: ";
     cin >> input2;
     stringstream ss(input2);
@@ -122,3 +121,5 @@ void Display(){
     cout << " "<< Fheit << " Degrees    " << round(WindC) << " Degrees      " << WindS << " MPH     " << DewP << " Degrees   " << round(Cbase) << " Feet " << endl;
     cout << "-----------------------------------------------------------------" << endl;
 }
+
+
