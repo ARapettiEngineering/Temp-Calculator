@@ -3,16 +3,16 @@
 #include <string>
 #include <sstream>
 using namespace std;
-void Inputs(double& DewP, double&Fheit, double& WindS, double& Clevel);//Defining the function for inputs
-double WindC(double&Fheit, double& WindS);//Defining the function that calculates everything
-double Cbase(double& DewP, double&Fheit, double& Clevel);
-void Display(double& DewP, double&Fheit, double& WindS, double& Clevel, double& WindC, double& Cbase);//Defining the function that displays everything
+void inputs(double& dewP, double&fheit, double& windS, double& clevel);//Defining the function for inputs
+double windC(double&fheit, double& windS);//Defining the function that calculates everything
+double cbase(double& dewP, double&fheit, double& clevel);
+void display(double& dewP, double&fheit, double& windS, double& clevel, double& windC, double& cbase);//Defining the function that displays everything
 
 
 int main()
 {
-
-    double DewP, Fheit, WindS, WindC, Cbase, Clevel; //Defined Variables
+    
+    double dewP, fheit, windS, windC, cbase, clevel; //Defined Variables
     cout << "------------------------------------------------------------------" << endl;//Start of program screen
     cout << "| This program will ask for the temperature (in Fahrenheit), the |" << endl;
     cout << "| dew point (in Fahrenheit), the wind speed (in MPH),  and       |" << endl;
@@ -22,14 +22,15 @@ int main()
     cout << "| base (in Feet). It then will display these in an organized     |" << endl;
     cout << "| table.                                                         |" << endl;
     cout << "------------------------------------------------------------------" << endl<<endl;
-    Inputs(DewP, Fheit, WindS, Clevel);//Calling the inputs function
-    WindC = 35.74 + ((0.6215 * Fheit) - (35.75 *(pow(WindS,0.16)))) + (.4275*Fheit * (pow(WindS,0.16)));
-    Cbase = ((Fheit-DewP)/4.4)*1000 + Clevel;
-    Display(DewP, Fheit, WindS, Clevel, WindC, Cbase);//Calling the Display Function
+    inputs(dewP, fheit, windS, clevel);//Calling the inputs function
+    windC = 35.74 + ((0.6215 * fheit) - (35.75 *(pow(windS,0.16)))) + (.4275*fheit * (pow(windS,0.16)));
+    cbase = ((fheit-dewP)/4.4)*1000 + clevel;
+    display(dewP, fheit, windS, clevel, windC, cbase);//Calling the Display Function
     return 0;
 }
 //Inputs shows what input to enter and takes the input (ex. Enter degrees in Fahrenheit
-void Inputs(double& DewP, double&Fheit, double& WindS, double& Clevel) {
+void inputs(double& dewP, double&fheit, double& windS, double& clevel) {
+//Strings validates input from user
     string input1;
     string input2;
     string input3;
@@ -39,82 +40,82 @@ void Inputs(double& DewP, double&Fheit, double& WindS, double& Clevel) {
     stringstream aa(input1);
 
     //Extracts the integer
-    if (aa >> Fheit) {
+    if (aa >> fheit) {
         // Check if there's anything left after the number
 
         char leftover;
         if (aa >> leftover) {
             cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
-            cin >> Fheit;
+            cin >> fheit;
         }
     }
     else {
         cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
-        cin >> Fheit;
+        cin >> fheit;
     }
     cout << endl << "Enter Wind Speed In MPH: ";
     cin >> input2;
     stringstream ss(input2);
 
     //Extracts the integer
-    if (ss >> WindS) {
+    if (ss >> windS) {
         // Check if there's anything left after the number
 
         char leftover;
         if (ss >> leftover) {
             cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
-            cin >> WindS;
+            cin >> windS;
         }
     }
     else {
         cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
-        cin >> WindS;
+        cin >> windS;
     }
     cout << endl << "Enter Dew Point In Fahrenheit: ";
     cin >> input3;
      stringstream gg(input3);
 
     //Extracts the integer
-    if (gg >> DewP) {
+    if (gg >> dewP) {
         // Check if there's anything left after the number
 
         char leftover;
         if (gg >> leftover) {
             cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
-            cin >> DewP;
+            cin >> dewP;
         }
     }
     else {
         cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
-        cin >> DewP;
+        cin >> dewP;
     }
     cout << endl << "Enter Elevation In Feet: ";
     cin >> input4;
      stringstream ff(input4);
 
     //Extracts the integer
-    if (ff >> Clevel) {
+    if (ff >> clevel) {
         // Check if there's anything left after the number
 
         char leftover;
         if (ff >> leftover) {
             cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
-            cin >> Clevel;
+            cin >> clevel;
         }
     }
     else {
         cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
-        cin >> Clevel;
+        cin >> clevel;
     }
     cout << endl;
 }
 
 //Displays the final Temp, Wind speed, etc
-void Display(double& DewP, double &Fheit, double& WindS, double& WindC, double& Cbase, double& Clevel){
+void display(double& dewP, double &fheit, double& windS, double& windC, double& cbase, double& clevel){
     cout << "-----------------------------------------------------------------" << endl;
     cout << " Temperature   Feels Like    Wind Speed   Dew Point   Cloud Base" << endl;
     cout << "-----------------------------------------------------------------" << endl;
-    cout << " "<< Fheit << " Degrees    " << round(WindC) << " Degrees      " << WindS << " MPH     " << DewP << " Degrees   " << round(Cbase) << " Feet " << endl;
+    cout << " "<< fheit << " Degrees    " << round(windC) << " Degrees      " << windS << " MPH     " << dewP << " Degrees   " << round(cbase) << " Feet " << endl;
     cout << "-----------------------------------------------------------------" << endl;
 }
 
