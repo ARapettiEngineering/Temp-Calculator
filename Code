@@ -114,7 +114,7 @@ double calcwindc(double& dewP, double &fheit, double& windS, double& windC, doub
     windC = 35.74 + ((0.6215 * fheit) - (35.75 *(pow(windS,0.16)))) + (.4275*fheit * (pow(windS,0.16)));
 }
 double calccbase (double& dewP, double &fheit, double& windS, double& windC, double& cbase, double& clevel){
-    cbase = ((fheit-dewP)/4.4)*1000 + clevel;
+    cbase == ((fheit-dewP)/4.4)*1000 + clevel;
 }
 
 //Displays the final Temp, Wind speed, etc
