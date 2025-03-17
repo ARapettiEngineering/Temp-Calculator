@@ -3,7 +3,7 @@
 #include <string>
 #include <sstream>
 using namespace std;
-void inputs(double& dewP, double&fheit, double& windS, double& clevel);//Defining the function for inputs
+void takeinputs(double& dewP, double&fheit, double& windS, double& clevel);//Defining the function for inputs
 double windC(double&fheit, double& windS);//Defining the function that calculates everything
 double cbase(double& dewP, double&fheit, double& clevel);
 void display(double& dewP, double&fheit, double& windS, double& clevel, double& windC, double& cbase);//Defining the function that displays everything
@@ -11,7 +11,7 @@ void display(double& dewP, double&fheit, double& windS, double& clevel, double& 
 
 int main()
 {
-    
+
     double dewP, fheit, windS, windC, cbase, clevel; //Defined Variables
     cout << "------------------------------------------------------------------" << endl;//Start of program screen
     cout << "| This program will ask for the temperature (in Fahrenheit), the |" << endl;
@@ -22,14 +22,14 @@ int main()
     cout << "| base (in Feet). It then will display these in an organized     |" << endl;
     cout << "| table.                                                         |" << endl;
     cout << "------------------------------------------------------------------" << endl<<endl;
-    inputs(dewP, fheit, windS, clevel);//Calling the inputs function
-    windC = 35.74 + ((0.6215 * fheit) - (35.75 *(pow(windS,0.16)))) + (.4275*fheit * (pow(windS,0.16)));
-    cbase = ((fheit-dewP)/4.4)*1000 + clevel;
+    takeinputs(dewP, fheit, windS, clevel);//Calling the inputs function
+    double calcwindc();
+    double calccbase();
     display(dewP, fheit, windS, clevel, windC, cbase);//Calling the Display Function
     return 0;
 }
 //Inputs shows what input to enter and takes the input (ex. Enter degrees in Fahrenheit
-void inputs(double& dewP, double&fheit, double& windS, double& clevel) {
+void takeinputs(double& dewP, double&fheit, double& windS, double& clevel) {
 //Strings validates input from user
     string input1;
     string input2;
@@ -108,6 +108,13 @@ void inputs(double& dewP, double&fheit, double& windS, double& clevel) {
         cin >> clevel;
     }
     cout << endl;
+}
+
+double calcwindc(double& dewP, double &fheit, double& windS, double& windC, double& cbase, double& clevel) {
+    windC = 35.74 + ((0.6215 * fheit) - (35.75 *(pow(windS,0.16)))) + (.4275*fheit * (pow(windS,0.16)));
+}
+double calccbase (double& dewP, double &fheit, double& windS, double& windC, double& cbase, double& clevel){
+    cbase = ((fheit-dewP)/4.4)*1000 + clevel;
 }
 
 //Displays the final Temp, Wind speed, etc
