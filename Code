@@ -3,17 +3,15 @@
 #include <string>
 #include <sstream>
 using namespace std;
-void takeinputs(double& dewP, double&fheit, double& windS, double& clevel);//Defining the function for inputs
-double windC(double&fheit, double& windS);//Defining the function that calculates everything
-double cbase(double& dewP, double&fheit, double& clevel);
-void display(double& dewP, double&fheit, double& windS, double& clevel, double& windC, double& cbase);//Defining the function that displays everything
 
+void takeinputs(double& dewP, double& fheit, double& windS, double& clevel); // Function for inputs
+double calculatedwindC(double& fheit, double& windS); // Function to calculate wind chill
+double calculatedcbase(double& dewP, double& fheit, double clevel); // Function to calculate cloud base
+void display(double& dewP, double& fheit, double& windS, double& clevel, double& windc, double& cbase); // Function to display everything
 
-int main()
-{
-
-    double dewP, fheit, windS, windC, cbase, clevel; //Defined Variables
-    cout << "------------------------------------------------------------------" << endl;//Start of program screen
+int main() {
+    double dewP, fheit, windS, windc, cbase, clevel; // Defined Variables
+    cout << "------------------------------------------------------------------" << endl;
     cout << "| This program will ask for the temperature (in Fahrenheit), the |" << endl;
     cout << "| dew point (in Fahrenheit), the wind speed (in MPH),  and       |" << endl;
     cout << "| elevation (in Feet). With this information the program         |" << endl;
@@ -21,28 +19,22 @@ int main()
     cout << "| temperature (in Fahrenheit). It will also calculate the cloud  |" << endl;
     cout << "| base (in Feet). It then will display these in an organized     |" << endl;
     cout << "| table.                                                         |" << endl;
-    cout << "------------------------------------------------------------------" << endl<<endl;
-    takeinputs(dewP, fheit, windS, clevel);//Calling the inputs function
-    double calcwindc();
-    double calccbase();
-    display(dewP, fheit, windS, clevel, windC, cbase);//Calling the Display Function
+    cout << "------------------------------------------------------------------" << endl << endl;
+    takeinputs(dewP, fheit, windS, clevel); // Calling the inputs function
+    windc = calculatedwindC(fheit, windS);  // Calculate wind chill first
+    cbase = calculatedcbase(dewP, fheit, clevel); // Calculate cloud base
+    display(dewP, fheit, windS, clevel, windc, cbase); // Display the results
     return 0;
 }
-//Inputs shows what input to enter and takes the input (ex. Enter degrees in Fahrenheit
-void takeinputs(double& dewP, double&fheit, double& windS, double& clevel) {
-//Strings validates input from user
-    string input1;
-    string input2;
-    string input3;
-    string input4;
+
+// Inputs function shows what input to enter and takes the input
+void takeinputs(double& dewP, double& fheit, double& windS, double& clevel) {
+    string input1, input2, input3, input4;
+
     cout << "Enter Degrees In Fahrenheit: ";
     getline(cin, input1);
     stringstream aa(input1);
-
-    //Extracts the integer
     if (aa >> fheit) {
-        // Check if there's anything left after the number
-
         char leftover;
         if (aa >> leftover) {
             cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
@@ -53,14 +45,11 @@ void takeinputs(double& dewP, double&fheit, double& windS, double& clevel) {
         cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
         cin >> fheit;
     }
+
     cout << endl << "Enter Wind Speed In MPH: ";
     cin >> input2;
     stringstream ss(input2);
-
-    //Extracts the integer
     if (ss >> windS) {
-        // Check if there's anything left after the number
-
         char leftover;
         if (ss >> leftover) {
             cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
@@ -71,14 +60,11 @@ void takeinputs(double& dewP, double&fheit, double& windS, double& clevel) {
         cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
         cin >> windS;
     }
+
     cout << endl << "Enter Dew Point In Fahrenheit: ";
     cin >> input3;
-     stringstream gg(input3);
-
-    //Extracts the integer
+    stringstream gg(input3);
     if (gg >> dewP) {
-        // Check if there's anything left after the number
-
         char leftover;
         if (gg >> leftover) {
             cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
@@ -89,14 +75,11 @@ void takeinputs(double& dewP, double&fheit, double& windS, double& clevel) {
         cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
         cin >> dewP;
     }
+
     cout << endl << "Enter Elevation In Feet: ";
     cin >> input4;
-     stringstream ff(input4);
-
-    //Extracts the integer
+    stringstream ff(input4);
     if (ff >> clevel) {
-        // Check if there's anything left after the number
-
         char leftover;
         if (ff >> leftover) {
             cout << endl << "Extra Characters Detected With The Integer. Please Enter A Valid Integer: ";
@@ -109,21 +92,24 @@ void takeinputs(double& dewP, double&fheit, double& windS, double& clevel) {
     }
     cout << endl;
 }
-
-double calcwindc(double& dewP, double &fheit, double& windS, double& windC, double& cbase, double& clevel) {
-    windC = 35.74 + ((0.6215 * fheit) - (35.75 *(pow(windS,0.16)))) + (.4275*fheit * (pow(windS,0.16)));
+//Calculates Wind Chill
+double calculatedwindC(double& fheit, double& windS) {
+    double windc;
+    windc = 35.74 + ((0.6215 * fheit) - (35.75 * (pow(windS, 0.16)))) + (0.4275 * fheit * (pow(windS, 0.16)));
+    return windc;
 }
-double calccbase (double& dewP, double &fheit, double& windS, double& windC, double& cbase, double& clevel){
-    cbase == ((fheit-dewP)/4.4)*1000 + clevel;
+//Calculates Cloud Base
+double calculatedcbase(double& dewP, double& fheit, double clevel) {
+    double cbase;
+    cbase = (((fheit - dewP) / 4.4) * 1000) + clevel; // Fixed the assignment here
+    return cbase;
 }
 
-//Displays the final Temp, Wind speed, etc
-void display(double& dewP, double &fheit, double& windS, double& windC, double& cbase, double& clevel){
+// Display function shows the results in a table
+void display(double& dewP, double& fheit, double& windS, double& clevel, double& windc, double& cbase) {
     cout << "-----------------------------------------------------------------" << endl;
     cout << " Temperature   Feels Like    Wind Speed   Dew Point   Cloud Base" << endl;
     cout << "-----------------------------------------------------------------" << endl;
-    cout << " "<< fheit << " Degrees    " << round(windC) << " Degrees      " << windS << " MPH     " << dewP << " Degrees   " << round(cbase) << " Feet " << endl;
+    cout << " " << fheit << " Degrees    " << round(windc) << " Degrees      " << windS << " MPH     " << dewP << " Degrees   " << round(cbase) << " Feet " << endl;
     cout << "-----------------------------------------------------------------" << endl;
 }
-
-
